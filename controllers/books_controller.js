@@ -4,7 +4,7 @@ const books = express.Router()
 const Book = require('../models/book.js')
 
 // SEED 
-books.get('/seed', (req, res) => {
+books.get('/seed', (_req, res) => {
     Book.insertMany([{
         "title": "The Shinobi Initiative",
         "description": "The reality-bending adventures of a clandestine service agency in the year 2166",
@@ -42,12 +42,12 @@ books.get('/seed', (req, res) => {
 })
 
 // INDEX
-books.get('/', (req, res) => {
+books.get('/', (_req, res) => {
     Book.find()
         .then(foundBooks => {
             res.status(200).json(foundBooks)
         })
-        .catch(err => {
+        .catch(_err => {
             res.status(400).json({
                 message: 'An error has occurred, could not get all books'
             })
@@ -60,7 +60,7 @@ books.get('/:id', (req, res) => {
         .then(foundBook => {
             res.status(200).json(foundBook)
         })
-        .catch(err => {
+        .catch(_err => {
             res.status(400).json({
                 message: 'An error has occurred, could not find the book'
             })
@@ -74,7 +74,7 @@ books.put('/:id', (req, res) => {
             console.log(req.body)
             res.status(200).json(updatedBook)
         })
-        .catch(err => {
+        .catch(_err => {
             res.status(400).json({
                 message: 'An error has occurred, could not edit the book'
             })
@@ -84,12 +84,12 @@ books.put('/:id', (req, res) => {
 // DELETE 
 books.delete('/:id', (req, res) => {
     Book.findByIdAndDelete(req.params.id)
-        .then(deletedBook => {
+        .then(_deletedBook => {
             res.status(200).json({
                 message: 'Delete successful'
             })
         })
-        .catch(err => {
+        .catch(_err => {
             res.status(400).json({
                 message: 'An error has occurred, could not delete the book'
             })
@@ -102,7 +102,7 @@ books.post('/', (req, res) => {
         .then(createdBook => {
             res.status(200).json(createdBook)
         })
-        .catch(err => {
+        .catch(_err => {
             res.status(400).json({
                 message: 'An error has occurred, could not create the book'
             })
