@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/your_database_name', { useNewUrlPars
     });
 
 // ROOT INDEX
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.send('Hello World');
 });
 
